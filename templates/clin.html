@@ -1,0 +1,121 @@
+<html>
+  <head>
+<meta name="viewport" content="width=device-width">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='burl.css') }}"> 
+
+        <title>ריכוז קלינאיות פרטיות שיקום מבוגרים</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>  
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.1/bootstrap3-editable/js/bootstrap-editable.js"></script>		
+		<script type="text/javascript" language="javascript">
+
+$(document).ready(function(){
+    var dataTable = $('#sample_data').DataTable({order: [[11, 'desc']],
+  "pageLength": 10
+} );
+
+}); 
+</script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h1 class="centermsg">  - ריכוז קלינאיות פרטיות שיקום מבוגרים{{msg}} - </h1>
+            <h2 class="center">   {{msg}}  </h2>
+
+            <br />
+                    <div class="table-responsive">
+                   
+				   <table id="sample_data" class="table">
+                            <thead>
+                                <tr>
+                                    <th>איזור</th>
+                                    <th>שם</th>
+                                    <th>פרטים ליצירת קשר</th>
+                                    <th>קבלה בבית המטופל או בקליניקה</th>
+                                    <th>יישובים בהם מקבלת</th>
+                                    <th>אוכלוסיות בהן אני מטפלת</th>
+                                    <th>תחומי טיפול</th>
+                                    <th>סוג טיפול</th>
+                                    <th>שפת הטיפול</th>
+                                    <th>הערות</th>
+                                    <th>column2</th>
+                                    <th>column3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in data %}
+                                <tr>
+                                    <td data-name="איזור" data-type="text" data-pk="{{row['איזור']}}">{{row['איזור']}}</td>
+                                    <td data-name="שם"  data-type="text" data-pk="{{row['שם']}}">
+										{% if row['קבלה בבית המטופל או בקליניקה']  == 'אוכלוסיות בהן אני מטפלת'%}
+											.
+										{% else %}
+											{{row['שם']}}
+										{% endif %}
+									</td>
+                                    <td data-name="פרטים ליצירת קשר" data-type="text" data-pk="{{row['שם']}}">{{row['פרטים ליצירת קשר']}}</td>
+                                    <td data-name="קבלה בבית המטופל או בקליניקה" data-type="text" data-pk="{{row['שם']}}">{{row['קבלה בבית המטופל או בקליניקה']}}</td>
+                                    <td data-name="יישובים בהם מקבלת" data-type="text" data-pk="{{row['שם']}}">{{row['יישובים בהם מקבלת']}}</td>
+                                    <td data-name="אוכלוסיות בהן אני מטפלת" data-type="text" data-pk="{{row['שם']}}"><div style="max-height:50px; overflow:hidden">{{row['אוכלוסיות בהן אני מטפלת']}}</div></td>
+                                    <td data-name="תחומי טיפול"  data-type="text" data-pk="{{row['שם']}}">
+										{% if row['תחומי טיפול']|length>100 %}
+											<a href={{ row['תחומי טיפול'] }}> תחומי טיפול  </a>	
+										{% else %}
+											<a class = "error">{{ row['תחומי טיפול'] }} </a>
+										{% endif %}
+
+									</td>
+                                    <td data-name="סוג טיפול" class="סוג טיפול" data-type="text" data-pk="{{row['שם']}}">{{row['סוג טיפול']}}</td>
+                                    <td data-name="שפת הטיפול" class="שפת הטיפול" data-type="text" data-pk="{{row['שם']}}">{{row['שפת הטיפול']}}</td>
+                                    <td data-name="הערות" class="הערות" data-type="text" data-pk="{{row['שם']}}">{{row['הערות']}}</td>
+                                    <td data-name="column2" class="column2" data-type="text" data-pk="{{row['שם']}}">{{row['column2']}}</td>
+                                    <td data-name="column3" data-type="text" data-pk="{{row['שם']}}">{{row['column3']}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+        </div>
+        <br />
+        <br />
+    </body>
+	
+		<style>
+	
+	
+		.center {
+			text-align: center;
+			font-size: 14;
+			font-family: 'Lucida Sans',
+			'Lucida Sans Regular',
+			'Lucida Grande',
+			'Lucida Sans Unicode',
+			Geneva, Verdana, sans-serif;
+
+			}
+			.centermsg {
+			text-align: center;
+			font-size: 28px;
+			font-family: 'Lucida Sans',
+			'Lucida Sans Regular',
+			'Lucida Grande',
+			'Lucida Sans Unicode',
+			Geneva, Verdana, sans-serif;
+		} 
+
+	</style>
+
+</html>
