@@ -1,0 +1,4 @@
+flask==1.1.1
+markupsafe==1.1.1
+pandas==0.25.1
+werkzeug==0.16.0
