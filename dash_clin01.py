@@ -10,10 +10,6 @@ from flask_table import Table, Col, LinkCol
 from flask import Flask, redirect, url_for, render_template, request,flash,Markup
 
 
-from dash.dependencies import Input, Output, State
-import dash
-import dash_bootstrap_components as dbc
-
 
 # In[2]:
 
